@@ -1,0 +1,76 @@
+<style lang="less">
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+</style>
+<template>
+  <view class="container"> 
+    <panel>
+      <view class="title" slot="title">最新活动</view>
+      <view class="title" slot="title">{{now}}</view>
+      <text class="info">
+        {{notification.msg}}
+      </text>
+    </panel>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Panel from '@/components/panel' // alias example
+import teachMixin from '@/mixins/teach'
+import { API_ADDRESS } from '@/config/config'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '首页'
+  };
+  components = {
+    panel: Panel
+  };
+
+  mixins = [teachMixin];
+
+  data = {
+    notification: {msg: 'wu'}
+  };
+
+  computed = {
+    now() {
+      return +new Date()
+    }
+  };
+
+  methods = {
+
+  };
+
+  events = {
+  };
+
+  async init() {
+    const { data } = await wepy.request({
+      url: `${API_ADDRESS}/notification`
+    })
+    this.notification.msg = data
+    this.$apply()
+  }
+
+  onLoad() {
+    this.init()
+    console.log('home')
+  }
+}
+</script>

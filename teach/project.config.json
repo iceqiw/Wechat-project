@@ -1,0 +1,17 @@
+{
+	"description": "A WePY project",
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"appid": "wxf2c87bf0d9d7f747",
+	"secret": "959e7a02144318a74949153bc6ffc2be",
+	"projectname": "teach",
+	"miniprogramRoot": "dist/",
+	"condition": {}
+}

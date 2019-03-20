@@ -1,0 +1,74 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/home/index',
+      'pages/profile/detail',
+      'pages/course/index',
+      'pages/register/reg',
+      'pages/login/index'
+
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: '首页',
+      navigationBarTextStyle: 'black',
+      enablePullDownRefresh: true
+    },
+    tabBar: {
+      backgroundColor: '#ffffff',
+      color: '#999999',
+      borderStyle: 'black',
+      selectedColor: '#1a76d2',
+      list: [
+        {
+          pagePath: 'pages/home/index',
+          text: '首页',
+          iconPath: 'static/menu/home_normal.png',
+          selectedIconPath: 'static/menu/home_pressed.png'
+        },
+        {
+          pagePath: 'pages/course/index',
+          text: '课程',
+          iconPath: 'static/menu/store_normal.png',
+          selectedIconPath: 'static/menu/store_pressed.png'
+        },
+        {
+          pagePath: 'pages/profile/detail',
+          text: '个人中心',
+          iconPath: 'static/menu/profile_normal.png',
+          selectedIconPath: 'static/menu/profile_pressed.png'
+        }
+      ]
+    }
+  }
+
+  globalData = {
+    userInfo: {}
+  }
+
+  constructor() {
+    super()
+    this.use('requestfix')
+    this.use('promisify')
+  }
+
+  onLaunch() {
+  }
+}
+</script>

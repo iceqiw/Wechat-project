@@ -1,0 +1,35 @@
+<style lang="less">
+</style>
+<template>
+  <view > 
+   
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Course extends wepy.page {
+  config = {
+    navigationBarTitleText: '课程'
+  };
+  components = {
+  };
+
+  data = {
+  };
+
+  computed = {
+  };
+
+  methods = {
+  };
+
+  events = {
+  };
+
+  onLoad() {
+  }
+}
+</script>

@@ -1,0 +1,176 @@
+<style lang="less" >
+.container {
+  padding: 16px;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  align-items: center;
+  border-bottom: 1px solid;
+  padding: 16px 0;
+  .input {
+    flex: 1;
+  }
+  .select-color {
+    color: black;
+  }
+
+  .text {
+    width: 74px;
+  }
+}
+
+.confirm-btn {
+  background-color: blue;
+  position: fixed;
+  border-radius: 0;
+  width: 100%;
+  height: 56px;
+  line-height: 56px;
+  left: 0;
+  bottom: 0;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  opacity: 0.1;
+  &:active {
+    background-color: #145ead;
+  }
+}
+
+.error-border {
+  border-bottom-color: #9f0002;
+}
+
+.editable {
+  opacity: 1;
+}
+
+.error {
+  padding-top: 8px;
+  width: 171px;
+  height: 14px;
+  font-size: 14px;
+  line-height: 1;
+  color: #9f0002;
+}
+</style>
+
+<template>
+<view>
+    <view class="container">
+
+        <view class="row {{phoneError ? 'error-border' : ''}}">
+            <text>电话：</text>
+            <input class="input" maxlength="11" type="number" placeholder="请输入" value="{{phone}}" @blur="onPhoneBlur"/>
+        </view>
+        <text class="error" wx:if="{{phoneError}}">请输入正确电话号码</text>
+
+        <view class="row {{passwordError ? 'error-border' : ''}}">
+            <text>密码：</text>
+            <input class="input" maxlength="20" placeholder="请输入" value="{{password}}" @blur="onPasswordBlur"/>
+        </view>
+        <text class="error" wx:if="{{passwordError}}">请填写正确密码</text>
+
+        <button class="confirm-btn {{editable ? 'editable' : ''}}" @tap="doRegister">确认</button>
+
+    </view>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import teachMixin from '@/mixins/teach'
+import { API_ADDRESS } from '@/config/config'
+
+export default class Reg extends wepy.page {
+  config = {
+    navigationBarTitleText: '注册'
+  }
+
+  components = {
+
+  }
+
+  mixins = [teachMixin]
+
+  validatePhone() {
+    this.phoneError = this.phone.length !== 11
+  }
+
+  validatePassword() {
+    this.passwordError = this.password.length < 8
+  }
+
+  computed = {
+    editable() {
+      return (
+        !this.phoneError && this.phone &&
+        (!this.passwordError && this.password)
+      )
+    }
+  }
+
+  events = {
+    doRegister: async () => {
+      const { statusCode } = await wepy.request({
+        url: `${API_ADDRESS}/register`,
+        method: 'post',
+        data: {
+          telephone: this.phone,
+          nickNames: this.phone,
+          password: this.password
+        }
+      })
+      if (statusCode === 403) {
+        this.$navigate('/pages/home/index')
+        return
+      }
+      this.$apply()
+      wx.navigateBack()
+    }
+  }
+
+  data = {
+    password: '',
+    passwordError: false,
+    phone: '',
+    phoneError: false
+  }
+
+  methods = {
+    doRegister() {
+      if (!this.editable) {
+        return
+      }
+      if (this.editable) {
+        this.$emit('doRegister', {
+          phone: this.phone,
+          password: this.password
+        })
+      }
+    },
+    onPasswordBlur({ detail }) {
+      this.password = detail.value
+      this.validatePassword()
+      if (!this.passwordError) {
+        wx.setStorageSync('password', detail.value)
+      }
+    },
+    onPhoneBlur({ detail }) {
+      this.phone = detail.value
+      this.validatePhone()
+      if (!this.phoneError) {
+        wx.setStorageSync('phone', detail.value)
+      }
+    }
+  }
+
+  onLoad() {
+    this.password = wx.getStorageSync('password')
+    this.phone = wx.getStorageSync('phone')
+  }
+}
+</script>

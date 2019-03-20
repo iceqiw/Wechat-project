@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>buy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="buy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(1.000000, 0.000000)" stroke="#333333">
+            <g>
+                <path d="M2.01049732,0.5 C1.74846836,0.5 1.53088543,0.702289388 1.51182229,0.963623984 L0.490587617,14.963624 C0.489483621,14.9817959 0.489483621,14.9817959 0.489262647,15 C0.489262647,15.2761424 0.713120272,15.5 0.989262647,15.5 L14.0106874,15.5 C14.0288915,15.499779 14.0288915,15.499779 14.0470634,15.498675 C14.322474,15.4785851 14.5294523,15.2390346 14.5093624,14.963624 L13.4881278,0.963623984 C13.4690646,0.702289388 13.2514817,0.5 12.9894527,0.5 L2.01049732,0.5 Z" id="Rectangle"></path>
+                <path d="M4.5,3 C4.5,4.65685425 5.84314575,6 7.5,6 C9.15685425,6 10.5,4.65685425 10.5,3" id="Oval" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

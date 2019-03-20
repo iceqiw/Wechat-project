@@ -1,0 +1,78 @@
+<style lang="less">
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+</style>
+<template>
+  <view class="container"> 
+    <view>
+      <view class="title" slot="title">最新活动</view>
+      <text class="info">
+       {{data}}
+      </text>
+    </view>
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Panel from '@/components/panel' // alias example
+import teachMixin from '@/mixins/teach'
+
+export default class Profile extends wepy.page {
+  config = {
+    navigationBarTitleText: '个人中心'
+  };
+  components = {
+    panel: Panel
+  };
+
+  mixins = [teachMixin];
+
+  data = {
+    mynum: 20,
+    notification: {}
+
+  };
+
+  computed = {
+    now() {
+      return +new Date()
+    }
+  };
+
+  methods = {
+    plus() {
+      this.mynum++
+    }
+  };
+
+  events = {
+    gotoLogin: () => {
+      wx.navigateTo({url: `/pages/login/index`})
+    }
+  };
+
+  onShow() {
+    if (wepy.$instance.globalData.token == null) {
+      this.$emit('gotoLogin')
+    }
+  }
+  onLoad() {
+    console.log(wepy.$instance.globalData)
+  }
+}
+</script>
