@@ -1,27 +1,14 @@
-# --- First database schema
-
 # --- !Ups
 
-create table if not exists test.company
+create table if not exists scm.course
 (
-  id bigint auto_increment
-    primary key,
-  name varchar(255) not null
-);
-
-create table if not exists test.computer
-(
-  id bigint auto_increment,
-  name varchar(255) not null,
-  introduced timestamp null,
-  discontinued timestamp null,
-  company_id bigint null,
-  constraint computer_pk
+  id          bigint auto_increment,
+  title       varchar(255) not null,
+  create_time timestamp    null,
+  constraint course_pk
     primary key (id)
 );
 
 # --- !Downs
 
-drop table if exists test.company;
-
-drop table if exists test.computer;
+drop table if exists scm.course;
