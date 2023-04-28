@@ -19,7 +19,9 @@ class Index extends Component<PropsWithChildren> {
   increment = () => {
     console.log(this.props);
     const { counter } = this.props.store;
+    const { c } = this.props.store;
     counter.increase();
+    c.increase1();
   };
 
   decrement = () => {
@@ -30,6 +32,7 @@ class Index extends Component<PropsWithChildren> {
   render() {
     const {
       counter: { count },
+      c: { st },
     } = this.props.store;
 
     return (
@@ -41,6 +44,8 @@ class Index extends Component<PropsWithChildren> {
           -
         </AtButton>
         <Text>{count}</Text>
+
+        <Text>{st}</Text>
       </View>
     );
   }
