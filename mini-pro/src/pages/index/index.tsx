@@ -5,21 +5,6 @@ import { observer, inject } from "mobx-react";
 import { AtButton, AtAvatar } from "taro-ui";
 import "./index.scss";
 
-type PageStateProps = {
-  store: {
-    counterStore: {
-      counter: number;
-      increment: Function;
-      decrement: Function;
-      incrementAsync: Function;
-    };
-  };
-};
-
-interface Index {
-  props: PageStateProps;
-}
-
 @inject("store")
 @observer
 class Index extends Component<PropsWithChildren> {
@@ -32,36 +17,30 @@ class Index extends Component<PropsWithChildren> {
   componentDidHide() {}
 
   increment = () => {
-    const { counterStore } = this.props.store;
-    counterStore.increment();
+    console.log(this.props);
+    const { counter } = this.props.store;
+    counter.increase();
   };
 
   decrement = () => {
-    const { counterStore } = this.props.store;
-    counterStore.decrement();
-  };
-
-  incrementAsync = () => {
-    const { counterStore } = this.props.store;
-    counterStore.incrementAsync();
+    const { counter } = this.props.store;
+    counter.decrease();
   };
 
   render() {
     const {
-      counterStore: { counter },
+      counter: { count },
     } = this.props.store;
+
     return (
       <View className="index">
-        {" "}
-        <AtAvatar circle text="凹凸实验室"></AtAvatar>
         <AtButton type="primary" onClick={this.increment}>
           +
         </AtButton>
         <AtButton type="secondary" onClick={this.decrement}>
           -
         </AtButton>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
+        <Text>{count}</Text>
       </View>
     );
   }
