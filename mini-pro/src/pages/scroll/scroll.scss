@@ -1,0 +1,27 @@
+/* Add this CSS in a separate CSS file or a style block in your component */
+.scroll-container {
+    height: 300px; /* Adjust the height as needed */
+    border: 2px solid #ccc;
+    width: 99%;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.input-area {
+    border: 2px solid #ccc;
+    margin: 10px;
+    width: 95%;
+
+    padding: 9px;
+}
+.scroll-item {
+    height: 2rem;
+    padding: 9px;
+    right: 0px;
+    font: 28px orbitron;
+    border-bottom: 1px solid #ccc;
+}
+
+.scroll-item.active {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}

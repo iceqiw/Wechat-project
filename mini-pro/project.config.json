@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "HighwayMini",
-  "description": "test",
+  "projectname": "test",
+  "description": "aaa",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,
